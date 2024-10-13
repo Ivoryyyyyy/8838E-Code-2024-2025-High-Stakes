@@ -21,9 +21,9 @@ extern pros::Imu imu;
 
 extern pros::Controller con;
 
-extern pros::adi::DigitalOut MogoMech;
-extern pros::adi::DigitalOut StakeWing;
-extern pros::adi::DigitalOut Redirect;
+extern pros::ADIDigitalOut MogoMech;
+extern pros::ADIDigitalOut StakeWing;
+extern pros::ADIDigitalOut Redirect;
 
 #endif
 //hello
