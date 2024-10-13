@@ -5,8 +5,9 @@
 #include "auton.h"
 
 void autonomous () {
-// Red Side Right
-driveClamp(800,1000);
+//
+//Red Side Right
+//driveClamp(800,1000);
 driveStraight2(1000);
 driveStraight2(0); 
 /*driveTurn2(110); 

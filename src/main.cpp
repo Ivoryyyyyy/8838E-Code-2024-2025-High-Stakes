@@ -43,6 +43,7 @@ bool MogoMechToggle = false;
 bool arcToggle = true;
 bool tankToggle=false;
 bool StakeWingToggle=true;
+bool RedirectToggle=false;
 
 while (true) {
 
@@ -53,13 +54,19 @@ if(con.get_digital_new_press(E_CONTROLLER_DIGITAL_L1)){
 MogoMech.set_value(MogoMechToggle);
 
 //Stakewing toggle
-if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_L2)) {
+if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_X)) {
             StakeWingToggle = !StakeWingToggle;
  }
  StakeWing.set_value(StakeWingToggle);
 
+ //Redirect
+if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_L2)) {
+            RedirectToggle = !RedirectToggle;
+ }
+ StakeWing.set_value(StakeWingToggle);
+
 //pid tester
-if(con.get_digital_new_press(E_CONTROLLER_DIGITAL_X)){
+if(con.get_digital_new_press(E_CONTROLLER_DIGITAL_Y)){
 	driveStraight(1000);//make sure that this works for small and big numbers 
 }
 
