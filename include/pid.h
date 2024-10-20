@@ -17,15 +17,19 @@ extern void driveStraight(int target);
 extern void driveStraight2(int target);
 extern void driveTurn(int target);
 extern void driveTurn2(int target);
+extern void driveSlow(int target, int speed);
+extern double calPID(double target, double input, int integralKi, int maxIntergral);
 
-#define TURN_KP 1.00// 
+#define TURN_KP 5.00//
 #define TURN_KI 0// 
-#define TURN_KD 0// 
+#define TURN_KD 20// 
 
 #define TURN_INTRGRAL_KI 30
 #define TURN_MAX_INTEGRAL 25
 
-
+#define LIFT_KP 0.3// 
+#define LIFT_KI 0// 
+#define LIFT_KD 0// 
 
 
 

@@ -24,4 +24,5 @@ extern pros::Controller con;
 extern pros::ADIDigitalOut MogoMech;
 extern pros::ADIDigitalOut StakeWing;
 
+
 #endif

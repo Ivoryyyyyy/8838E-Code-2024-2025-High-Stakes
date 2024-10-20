@@ -36,7 +36,8 @@ void opcontrol() {
 bool MogoMechToggle = false;
 bool arcToggle = true;
 bool tankToggle=false;
-bool StakeWingToggle=true;
+bool StakeWingToggle=false;
+double liftAngle=0;
 
 while (true) {
 
@@ -51,23 +52,26 @@ if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_X)) {
             StakeWingToggle = !StakeWingToggle;
  }
  StakeWing.set_value(StakeWingToggle);
+ StakeWing.set_value(StakeWingToggle);
 
  //Redirect
 if (con.get_digital(E_CONTROLLER_DIGITAL_L1)){
-	Redirect.move(50);
+	Redirect.move(127);
+	liftAngle = Redirect.get_position();
 }
 else if (con.get_digital(E_CONTROLLER_DIGITAL_L2)){
 	Redirect.move(-30);
+	liftAngle = Redirect.get_position();
 }
 else {
-	Redirect.move(0);
-
+	Redirect.move(calPID(liftAngle,Redirect.get_position(),0,0));
 }
- StakeWing.set_value(StakeWingToggle);
-
+ 
 //pid tester
 if(con.get_digital_new_press(E_CONTROLLER_DIGITAL_A)){
-	driveStraight(1000);//make sure that this works for small and big numbers 
+	//driveStraight(1000);//make sure that this works for small and big numbers 
+	driveTurn(90);
+	
 }
 
 //Intake
