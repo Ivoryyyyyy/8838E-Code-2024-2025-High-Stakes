@@ -9,12 +9,6 @@
 using namespace pros;
 using namespace std;
 
-/*
- * A callback function for LLEMU's center button.
- *
- * When this callback is fired, it will toggle line 2 of the LCD text between
- * "I was pressed!" and nothing.
- */
 void on_center_button() {
 	static bool pressed = false;
 	pressed = !pressed;
@@ -43,12 +37,11 @@ bool MogoMechToggle = false;
 bool arcToggle = true;
 bool tankToggle=false;
 bool StakeWingToggle=true;
-bool RedirectToggle=false;
 
 while (true) {
 
 //Mogo Mech
-if(con.get_digital_new_press(E_CONTROLLER_DIGITAL_L1)){
+if(con.get_digital_new_press(E_CONTROLLER_DIGITAL_Y)){
 	MogoMechToggle = !MogoMechToggle;
 }
 MogoMech.set_value(MogoMechToggle);
@@ -60,30 +53,34 @@ if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_X)) {
  StakeWing.set_value(StakeWingToggle);
 
  //Redirect
-if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_L2)) {
-            RedirectToggle = !RedirectToggle;
- }
+if (con.get_digital(E_CONTROLLER_DIGITAL_L1)){
+	Redirect.move(50);
+}
+else if (con.get_digital(E_CONTROLLER_DIGITAL_L2)){
+	Redirect.move(-30);
+}
+else {
+	Redirect.move(0);
+
+}
  StakeWing.set_value(StakeWingToggle);
 
 //pid tester
-if(con.get_digital_new_press(E_CONTROLLER_DIGITAL_Y)){
+if(con.get_digital_new_press(E_CONTROLLER_DIGITAL_A)){
 	driveStraight(1000);//make sure that this works for small and big numbers 
 }
 
-// Intake
+//Intake
 if (con.get_digital(E_CONTROLLER_DIGITAL_R1)){
 	Intake.move(90);
-	Intake2.move(90);
 	Intake_Layer1.move(90);
 }
 else if (con.get_digital(E_CONTROLLER_DIGITAL_R2)){
 	Intake.move (-90);
-	Intake2.move(-90);
 	Intake_Layer1.move(-90);
 }
 else {
 	Intake.move(0);
-	Intake2.move(0);
 	Intake_Layer1.move(0);
 }
 //chassis arcade drive 
@@ -94,7 +91,7 @@ int turn = int(pow(RX, 3)/ 16129);
 int left= power + turn; 
 int right = power - turn;
 
-if(con.get_digital_new_press(E_CONTROLLER_DIGITAL_Y)){
+if(con.get_digital_new_press(E_CONTROLLER_DIGITAL_B)){
 	arcToggle = !arcToggle;
 	tankToggle = !tankToggle;
 }

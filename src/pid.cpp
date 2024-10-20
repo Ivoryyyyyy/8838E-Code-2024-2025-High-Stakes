@@ -184,11 +184,11 @@ if (count >= 20 || time2 > timeout){
     //break;
 }
 if (time2 % 50 == 0 && time2 % 100 !=0 && time2 % 150 !=0){
-    con.print(0,0,"ERROR:%f    ", float(error));
+    con.print(0,0,"ERROR:%f       ", float(error));
 } else if (time2% 100 == 0 && time2 % 150 !=0){
-    con.print(1,0,"HeadingError!%f        ", float(heading_error));
+    con.print(1,0,"HeadingError!%f          ", float(init_heading));
 } else if (time2 % 150 ==0){
-    con.print(2,0,"Time:%f    ",float(time2));
+    con.print(2,0,"Time:%f      ",float(time2));
 }
 
     delay(10);
@@ -532,11 +532,9 @@ if (voltage > 127){
 
 if(abs(error) < start && abs(error) > stop){
    Intake.move(127);
-    Intake2.move(127);
     Intake_Layer1.move(127);
 }else{
     Intake.move(0);
-    Intake2.move(0);
     Intake_Layer1.move(0);
 }
 
