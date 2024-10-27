@@ -10,7 +10,7 @@
 #define RF_PORT 5
 #define RM_PORT 7
 #define RB_PORT 1
-#define IMU_PORT 17
+#define IMU_PORT 15
 #define Intake_PORT 4
 #define Intake_Layer1_PORT 12
 #define Redirect_PORT 3

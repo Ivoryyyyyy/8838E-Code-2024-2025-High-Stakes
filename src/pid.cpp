@@ -105,7 +105,7 @@ if(intergral2 >= 0){
 }
     derivative2 = error2 - prevError2;
 
-   power2 = (vKp + error2) + (vKi * intergral2) + (vKd * derivative2);
+   power2 = (vKp * error2) + (vKi * intergral2) + (vKd * derivative2);
 
     return power2;
 }
@@ -128,7 +128,7 @@ if(intergral3 >= 0){
 }
     derivative3 = error3 - prevError3;
 
-   power3 = (vKp + error3) + (vKi * intergral3) + (vKd * derivative3);
+   power3 = (vKp * error3) + (vKi * intergral3) + (vKd * derivative3);
 
     return power3;
 }
@@ -181,7 +181,7 @@ if (voltage > 127){
 chasMove( (voltage + heading_error), (voltage + heading_error), (voltage + heading_error),(voltage - heading_error), (voltage - heading_error), (voltage - heading_error));
 if (abs(target- encoderAvg) <=4)-count++;
 if (count >= 20 || time2 > timeout){
-    //break;
+    break;
 }
 if (time2 % 50 == 0 && time2 % 100 !=0 && time2 % 150 !=0){
     con.print(0,0,"ERROR:%f       ", float(error));
@@ -193,10 +193,7 @@ if (time2 % 50 == 0 && time2 % 100 !=0 && time2 % 150 !=0){
 
     delay(10);
     time2 += 10;
-
-
 }
-
 
 LF.brake();
 LM.brake();
@@ -269,16 +266,13 @@ RM.brake();
 RB.brake();
 }
 
-
-
-
 //Drive Strait 2 
 void driveStraight2 (int target) {
     int timeout = 30000;
 
 double x = 0;
 x = double(abs(target));
-timeout = (0 * pow(x,5)) + (0 * pow(x, 4)) + (0* pow(x,3)) + (0* pow(x,2)) + (0 * x) + 0; //Comment timeout our while tuning pid and while tuning timeout, Tune wit 
+//timeout = (0 * pow(x,5)) + (0 * pow(x, 4)) + (0* pow(x,3)) + (0* pow(x,2)) + (0 * x) + 0; //Comment timeout our while tuning pid and while tuning timeout, Tune wit 
 
     double voltage;
     double encoderAvg;
@@ -368,7 +362,7 @@ while(true){
 
     if (abs(target - position) <= 1) count ++;
     if (count >= 20 || time2 > timeout){
-       // break;
+       break;
     }
 
     if (time2 % 50 == 0 && time2 % 100 !=0 && time2 % 150 !=0){
@@ -432,11 +426,11 @@ double x = 0;
 x = double(abs(turnv));
 variKP = (0 * pow(x,5)) + (0 * pow(x, 4)) + (0* pow(x,3)) + (0* pow(x,2)) + (0 * x) + 0; 
 variKD = (0 * pow(x,5)) + (0 * pow(x, 4)) + (0* pow(x,3)) + (0* pow(x,2)) + (0 * x) + 0; 
-timeout = (0 * pow(x,5)) + (0 * pow(x, 4)) + (0* pow(x,3)) + (0* pow(x,2)) + (0 * x) + 0; //Comment timeout our while tuning pid and while tuning timeout, Tune wit 
+//timeout = (0 * pow(x,5)) + (0 * pow(x, 4)) + (0* pow(x,3)) + (0* pow(x,2)) + (0 * x) + 0; //Comment timeout our while tuning pid and while tuning timeout, Tune wit 
 
 
 while(true){
-   position = imu.get_heading(); //this is wher the nits are set to be degrees 
+   position = imu.get_heading(); //this is wher the numbers are set to be degrees 
 
 if (position > 180){
     position = ((350-position)*-1 );
@@ -467,7 +461,7 @@ if ((target < 0) && position >0) {
 
     if (abs(target = position) <= 1) count ++;
     if (count >= 20 || time2 > timeout){
-        //break;
+        break;
     }
 
     if (time2 % 50 == 0 && time2 % 100 !=0 && time2 % 150 !=0){

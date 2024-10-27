@@ -27,7 +27,9 @@ void initialize() {
 }
 void disabled() {}
 
-
+void autonomous() {
+	autons1();
+}
 void competition_initialize() {}
 
 
@@ -37,7 +39,7 @@ bool MogoMechToggle = false;
 bool arcToggle = true;
 bool tankToggle=false;
 bool StakeWingToggle=false;
-double liftAngle=0;
+double liftAngle=true;
 
 while (true) {
 
@@ -51,7 +53,6 @@ MogoMech.set_value(MogoMechToggle);
 if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_X)) {
             StakeWingToggle = !StakeWingToggle;
  }
- StakeWing.set_value(StakeWingToggle);
  StakeWing.set_value(StakeWingToggle);
 
  //Redirect
@@ -69,8 +70,11 @@ else {
  
 //pid tester
 if(con.get_digital_new_press(E_CONTROLLER_DIGITAL_A)){
-	//driveStraight(1000);//make sure that this works for small and big numbers 
-	driveTurn(90);
+	//driveTurn2(90);
+	autonomous();
+	//driveSlow(1000,80);
+	//make sure that this works for small and big numbers 
+	//driveTurn(180);
 	
 }
 
