@@ -8,6 +8,8 @@ using namespace pros;
 using namespace c;
 using namespace std;
 
+int tunetime2 =0;
+
 //constants used for caluclating power/voltage 
 double vKp;
 double vKi;
@@ -147,10 +149,11 @@ x = double(abs(target));
     double init_heading = imu.get_heading();
     double heading_error = 0;
     int cycle = 0;
-    int time = 0;
+    int time2 = 0;
+
 
 setConstants( STRAIT_KP, STRAIT_KI,STRAIT_KD);
-resetEncoders;
+resetEncoders();
 
 imu.tare();
 
@@ -181,6 +184,7 @@ if (voltage > 127){
 chasMove( (voltage + heading_error), (voltage + heading_error), (voltage + heading_error),(voltage - heading_error), (voltage - heading_error), (voltage - heading_error));
 if (abs(target- encoderAvg) <=4)-count++;
 if (count >= 20 || time2 > timeout){
+    tunetime2 = time2;
     break;
 }
 if (time2 % 50 == 0 && time2 % 100 !=0 && time2 % 150 !=0){
@@ -216,10 +220,10 @@ timeout = (0 * pow(x,5)) + (0 * pow(x, 4)) + (0* pow(x,3)) + (0* pow(x,2)) + (0 
     double init_heading = imu.get_heading();
     double heading_error = 0;
     int cycle = 0;
-    int time = 0;
+    int time2 = 0;
 
 setConstants( STRAIT_KP, STRAIT_KI,STRAIT_KD);
-resetEncoders;
+resetEncoders();
 
 while(true){
 
@@ -245,6 +249,7 @@ if (voltage > 127* double(speed)/100.0){
 chasMove( (voltage + heading_error), (voltage + heading_error), (voltage + heading_error),(voltage - heading_error), (voltage - heading_error), (voltage - heading_error));
 if (abs(target- encoderAvg) <=4)-count++;
 if (count >= 20 || time2 > timeout){
+    tunetime2 = time2;
     break;
 }
 if (time2 % 50 == 0 && time2 % 100 !=0 && time2 % 150 !=0){
@@ -280,10 +285,10 @@ x = double(abs(target));
     double init_heading = imu.get_heading();
     double heading_error = 0;
     int cycle = 0;
-    int time = 0;
+    int time2 = 0;
 
 setConstants( STRAIT_KP, STRAIT_KI,STRAIT_KD);
-resetEncoders;
+resetEncoders();
 
 while(true){
 
@@ -309,6 +314,7 @@ if (voltage > 127){
 chasMove( (voltage + heading_error), (voltage + heading_error), (voltage + heading_error),(voltage - heading_error), (voltage - heading_error), (voltage - heading_error));
 if (abs(target- encoderAvg) <=4)-count++;
 if (count >= 20 || time2 > timeout){
+    tunetime2 = time2;
     break;
 }
 if (time2 % 50 == 0 && time2 % 100 !=0 && time2 % 150 !=0){
@@ -362,7 +368,8 @@ while(true){
 
     if (abs(target - position) <= 1) count ++;
     if (count >= 20 || time2 > timeout){
-       break;
+         tunetime2 = time2;
+    break;
     }
 
     if (time2 % 50 == 0 && time2 % 100 !=0 && time2 % 150 !=0){
@@ -426,7 +433,7 @@ double x = 0;
 x = double(abs(turnv));
 variKP = (0 * pow(x,5)) + (0 * pow(x, 4)) + (0* pow(x,3)) + (0* pow(x,2)) + (0 * x) + 0; 
 variKD = (0 * pow(x,5)) + (0 * pow(x, 4)) + (0* pow(x,3)) + (0* pow(x,2)) + (0 * x) + 0; 
-//timeout = (0 * pow(x,5)) + (0 * pow(x, 4)) + (0* pow(x,3)) + (0* pow(x,2)) + (0 * x) + 0; //Comment timeout our while tuning pid and while tuning timeout, Tune wit 
+timeout = (30000 * pow(x,5)) + (0 * pow(x, 4)) + (0* pow(x,3)) + (0* pow(x,2)) + (0 * x) + 0; //Comment timeout our while tuning pid and while tuning timeout, Tune wit 
 
 
 while(true){
@@ -461,7 +468,8 @@ if ((target < 0) && position >0) {
 
     if (abs(target = position) <= 1) count ++;
     if (count >= 20 || time2 > timeout){
-        break;
+          tunetime2 = time2;
+    break;
     }
 
     if (time2 % 50 == 0 && time2 % 100 !=0 && time2 % 150 !=0){
@@ -485,8 +493,8 @@ if ((target < 0) && position >0) {
 
 //driveClamp, clamp distance is the distance u want it to clamp from the target
 
-void driveClamp (int target, int clampDistance) {
-    int timeout = 30000;
+void driveClamp (int target, int clampDistance){
+   int timeout = 30000;
 
 double x = 0;
 x = double(abs(target));
@@ -498,10 +506,10 @@ timeout = (0 * pow(x,5)) + (0 * pow(x, 4)) + (0* pow(x,3)) + (0* pow(x,2)) + (0 
     double init_heading = imu.get_heading();
     double heading_error = 0;
     int cycle = 0;
-    int time = 0;
+    int time2 = 0;
 
 setConstants( STRAIT_KP, STRAIT_KI,STRAIT_KD);
-resetEncoders;
+resetEncoders();
 
 while(true){
 
@@ -521,16 +529,16 @@ if (voltage > 127){
     voltage = 127;
 }else if (voltage <-127){
     voltage = -127;
+}
 
 if(abs(error) < clampDistance ){
     MogoMech.set_value(true);
 }
-
-chasMove( (voltage + heading_error), (voltage + heading_error), (voltage + heading_error),(voltage + heading_error), (voltage + heading_error), (voltage + heading_error));
+chasMove( (voltage + heading_error), (voltage + heading_error), (voltage + heading_error),(voltage - heading_error), (voltage - heading_error), (voltage - heading_error));
 if (abs(target- encoderAvg) <=4)-count++;
 if (count >= 20 || time2 > timeout){
+    tunetime2 = time2;
     break;
-}
 if (time2 % 50 == 0 && time2 % 100 !=0 && time2 % 150 !=0){
     con.print(0,0,"ERROR:%f    ", float(error));
 } else if (time2% 100 == 0 && time2 % 150 !=0){
@@ -542,13 +550,13 @@ if (time2 % 50 == 0 && time2 % 100 !=0 && time2 % 150 !=0){
     delay(10);
     time2 += 10;
 }
-}
 LF.brake();
 LM.brake();
 LB.brake();
 RF.brake();
 RM.brake();
 RB.brake();
+}
 }
 
 //driveIntake function has 2 perametiers, 1 target, 2 where from the target to start intaking where from the target to stop intaking
@@ -566,10 +574,10 @@ timeout = (0 * pow(x,5)) + (0 * pow(x, 4)) + (0* pow(x,3)) + (0* pow(x,2)) + (0 
     double init_heading = imu.get_heading();
     double heading_error = 0;
     int cycle = 0;
-    int time = 0;
+    int time2 = 0;
 
 setConstants( STRAIT_KP, STRAIT_KI,STRAIT_KD);
-resetEncoders;
+resetEncoders();
 
 while(true){
 
@@ -589,6 +597,7 @@ if (voltage > 127){
     voltage = 127;
 }else if (voltage <-127){
     voltage = -127;
+}
 
 if(abs(error) < start && abs(error) > stop){
    Intake.move(127);
@@ -601,6 +610,7 @@ if(abs(error) < start && abs(error) > stop){
 chasMove( (voltage + heading_error), (voltage + heading_error), (voltage + heading_error),(voltage + heading_error), (voltage + heading_error), (voltage + heading_error));
 if (abs(target- encoderAvg) <=4)-count++;
 if (count >= 20 || time2 > timeout){
+       tunetime2 = time2;
     break;
 }
 if (time2 % 50 == 0 && time2 % 100 !=0 && time2 % 150 !=0){
@@ -614,6 +624,145 @@ if (time2 % 50 == 0 && time2 % 100 !=0 && time2 % 150 !=0){
     delay(10);
     time2 += 10;
 }
+LF.brake();
+LM.brake();
+LB.brake();
+RF.brake();
+RM.brake();
+RB.brake();
+}
+//Drive Clamp Slow
+
+void driveClampSlow (int target, int clampDistance, int speed) {
+    int timeout = 30000;
+
+double x = 0;
+x = double(abs(target));
+timeout = (0 * pow(x,5)) + (0 * pow(x, 4)) + (0* pow(x,3)) + (0* pow(x,2)) + (0 * x) + 0; //Comment timeout our while tuning pid and while tuning timeout, Tune wit 
+
+    double voltage;
+    double encoderAvg;
+    int count = 0;
+    double init_heading = imu.get_heading();
+    double heading_error = 0;
+    int cycle = 0;
+    int time2 = 0;
+
+setConstants( STRAIT_KP, STRAIT_KI,STRAIT_KD);
+resetEncoders();
+
+while(true){
+
+encoderAvg = (LB.get_position() + RB. get_position()) / 2;
+voltage = calPID(target, encoderAvg, STRAIT_INTEGRAL_KI, STRAIT_MAX_INTEGRAL);
+
+
+if(imu.get_heading() < 180) {
+    heading_error = init_heading - imu.get_heading();
+}
+else {
+    heading_error =((360 - imu.get_heading())-init_heading);
+}
+heading_error = heading_error * 0;
+
+if(abs(error) < clampDistance ){
+    MogoMech.set_value(true);
+}
+if (voltage > 127* double(speed)/100.0){
+    voltage = 127* double(speed)/100.0;
+}else if (voltage <-127* double(speed)/100.0){
+    voltage = -127* double(speed)/100.0;
+}
+
+chasMove( (voltage + heading_error), (voltage + heading_error), (voltage + heading_error),(voltage + heading_error), (voltage + heading_error), (voltage + heading_error));
+if (abs(target- encoderAvg) <=4)-count++;
+if (count >= 20 || time2 > timeout){
+       tunetime2 = time2;
+    break;
+}
+if (time2 % 50 == 0 && time2 % 100 !=0 && time2 % 150 !=0){
+    con.print(0,0,"ERROR:%f    ", float(error));
+} else if (time2% 100 == 0 && time2 % 150 !=0){
+    con.print(1,0,"EncoderAvg!%f        ", float(encoderAvg));
+} else if (time2 % 150 ==0){
+    con.print(2,0,"Time:%f    ",float(time2));
+}
+
+    delay(10);
+    time2 += 10;
+}
+
+LF.brake();
+LM.brake();
+LB.brake();
+RF.brake();
+RM.brake();
+RB.brake();
+}
+// Drive Intake Slow 
+
+void driveIntakeSlow (int target, int start, int stop, int speed) {
+    int timeout = 30000;
+
+double x = 0;
+x = double(abs(target));
+timeout = (0 * pow(x,5)) + (0 * pow(x, 4)) + (0* pow(x,3)) + (0* pow(x,2)) + (0 * x) + 0; //Comment timeout our while tuning pid and while tuning timeout, Tune wit 
+
+    double voltage;
+    double encoderAvg;
+    int count = 0;
+    double init_heading = imu.get_heading();
+    double heading_error = 0;
+    int cycle = 0;
+    int time2 = 0;
+
+setConstants( STRAIT_KP, STRAIT_KI,STRAIT_KD);
+resetEncoders();
+
+while(true){
+
+encoderAvg = (LB.get_position() + RB. get_position()) / 2;
+voltage = calPID(target, encoderAvg, STRAIT_INTEGRAL_KI, STRAIT_MAX_INTEGRAL);
+
+
+if(imu.get_heading() < 180) {
+    heading_error = init_heading - imu.get_heading();
+}
+else {
+    heading_error =((360 - imu.get_heading())-init_heading);
+}
+heading_error = heading_error * 0;
+
+if (voltage > 127* double(speed)/100.0){
+    voltage = 127* double(speed)/100.0;
+}else if (voltage <-127* double(speed)/100.0){
+    voltage = -127* double(speed)/100.0;
+}
+
+if(abs(error) < start && abs(error) > stop){
+   Intake.move(127);
+    Intake_Layer1.move(127);
+}else{
+    Intake.move(0);
+    Intake_Layer1.move(0);
+}
+
+chasMove( (voltage + heading_error), (voltage + heading_error), (voltage + heading_error),(voltage + heading_error), (voltage + heading_error), (voltage + heading_error));
+if (abs(target- encoderAvg) <=4)-count++;
+if (count >= 20 || time2 > timeout){
+    tunetime2 = time2;
+    break;
+}
+if (time2 % 50 == 0 && time2 % 100 !=0 && time2 % 150 !=0){
+    con.print(0,0,"ERROR:%f    ", float(error));
+} else if (time2% 100 == 0 && time2 % 150 !=0){
+    con.print(1,0,"EncoderAvg!%f        ", float(encoderAvg));
+} else if (time2 % 150 ==0){
+    con.print(2,0,"Time:%f    ",float(time2));
+}
+
+    delay(10);
+    time2 += 10;
 }
 LF.brake();
 LM.brake();
@@ -622,6 +771,3 @@ RF.brake();
 RM.brake();
 RB.brake();
 }
-
-
-

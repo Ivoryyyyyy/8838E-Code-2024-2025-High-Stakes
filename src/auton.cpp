@@ -4,11 +4,13 @@
 #include "robot.h"
 
 void autons1 () {
-driveStraight2(1000);
-driveTurn(90);
-//Red Side Right
-/*driveClamp(1000,700);
-driveTurn(45);
+//Right Side Right
+driveStraight2(-750);
+driveTurn(-32);
+driveStraight2(-400);
+driveClamp(-400,-600);
+MogoMech.set_value(true);
+/*driveTurn(45);
 driveTurn(45);
 driveIntake(200,137,200);
 driveStraight2(0); 

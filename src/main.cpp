@@ -40,6 +40,8 @@ bool arcToggle = true;
 bool tankToggle=false;
 bool StakeWingToggle=false;
 double liftAngle=true;
+int time=0;
+
 
 while (true) {
 
@@ -65,19 +67,18 @@ else if (con.get_digital(E_CONTROLLER_DIGITAL_L2)){
 	liftAngle = Redirect.get_position();
 }
 else {
+	setConstants(LIFT_KP,LIFT_KI,LIFT_KD);
 	Redirect.move(calPID(liftAngle,Redirect.get_position(),0,0));
 }
  
 //pid tester
 if(con.get_digital_new_press(E_CONTROLLER_DIGITAL_A)){
-	//driveTurn2(90);
+	//driveClamp(-50,-200);
 	autonomous();
 	//driveSlow(1000,80);
 	//make sure that this works for small and big numbers 
 	//driveTurn(180);
-	
 }
-
 //Intake
 if (con.get_digital(E_CONTROLLER_DIGITAL_R1)){
 	Intake.move(90);
@@ -121,6 +122,19 @@ RF.move(right);
 RM.move(right);
 RB.move(right);
 }
+
+if (time % 50 == 0 && time % 100 !=0 && time % 150 !=0){
+    con.print(0,0,"ERROR:%f       ", float(error));
+} else if (time% 100 == 0 && time % 150 !=0){
+    con.print(1,0,"HeadingError!%f          ", float(imu.get_heading()));
+} else if (time % 150 ==0){
+    con.print(2,0,"Time:%f      ",float(tunetime2));
+}
+
+
+
+
+
 
 }
 

@@ -21,10 +21,16 @@ extern void driveSlow(int target, int speed);
 extern double calPID(double target, double input, int integralKi, int maxIntergral);
 extern void driveIntake(int target, int start, int stop);
 extern void driveClamp (int target, int clampDistance);
+extern void setConstants( double kp, double ki, double kd);
+extern void driveClampSlow (int target, int clampDistance, int speed);
+extern void driveIntakeSlow (int target, int start, int stop, int speed);
+extern int time2;
+extern float error;
+extern int tunetime2;
 
-#define TURN_KP 5.00//
+#define TURN_KP 7.00//
 #define TURN_KI 0// 
-#define TURN_KD 60// 
+#define TURN_KD 70// 
 
 #define TURN_INTRGRAL_KI 30
 #define TURN_MAX_INTEGRAL 25
