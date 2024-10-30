@@ -4,27 +4,42 @@
 #include "robot.h"
 
 void autons1 () {
-//Right Side Right
-driveStraight2(-750);
+//Red Side Left
+driveSlow(-700,80);
 driveTurn(-32);
-driveStraight2(-400);
-driveClamp(-400,-600);
+driveClampSlow(-450,20,20);
 MogoMech.set_value(true);
-/*driveTurn(45);
-driveTurn(45);
-driveIntake(200,137,200);
-driveStraight2(0); 
-driveTurn2(110); 
-driveStraight2(600);
-driveTurn2(90);
-driveStraight2(600);
-driveTurn2(30);
+driveTurn(120); 
+driveStraight2(800);
+driveTurn(15);
+justIntake(100);
+driveTurn(70);
+driveStraight2(500);
+driveTurn(-20);
+driveStraight2(150);
+driveTurn(-s30);
+driveStraight2(100);
+
+
+
+
+//MogoMech.set_value(true);
+//driveTurn(45);
+//driveIntake(500)
+/*driveTurn2(110); 
+driveIntakeSlow(800,600,800,80);
+driveStraight2(-200);
+driveTurn2(20);
+driveIntakeSlow(200,200,200,80);
+driveStraight2(-600);
+driveTurn2(-90);
 driveTurn2(110);
 driveStraight2(600);
 driveTurn2(90);
 driveStraight2(200);*/
 
 // Red Side Left
+
 
 // Blue Side Right
 //Driveclamp(800,1000)

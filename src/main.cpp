@@ -73,8 +73,8 @@ else {
  
 //pid tester
 if(con.get_digital_new_press(E_CONTROLLER_DIGITAL_A)){
-	//driveClamp(-50,-200);
-	autonomous();
+	justIntake(100);
+	//autonomous(); 
 	//driveSlow(1000,80);
 	//make sure that this works for small and big numbers 
 	//driveTurn(180);

@@ -27,6 +27,7 @@ extern void driveIntakeSlow (int target, int start, int stop, int speed);
 extern int time2;
 extern float error;
 extern int tunetime2;
+extern void justIntake (int time);
 
 #define TURN_KP 7.00//
 #define TURN_KI 0// 

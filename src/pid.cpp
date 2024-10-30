@@ -3,13 +3,14 @@
 #include "pid.h"
 #include "robot.h"
 
-
 using namespace pros;
 using namespace c;
 using namespace std;
 
+int clampDistance;
 int tunetime2 =0;
-
+/*string CD = string(int clampDistance());
+(int clampDistance)string = string CD;*/
 //constants used for caluclating power/voltage 
 double vKp;
 double vKi;
@@ -212,7 +213,7 @@ void driveSlow (int target, int speed) {
 
 double x = 0;
 x = double(abs(target));
-timeout = (0 * pow(x,5)) + (0 * pow(x, 4)) + (0* pow(x,3)) + (0* pow(x,2)) + (0 * x) + 0; //Comment timeout our while tuning pid and while tuning timeout, Tune wit 
+//timeout = (0 * pow(x,5)) + (0 * pow(x, 4)) + (0* pow(x,3)) + (0* pow(x,2)) + (0 * x) + 0; //Comment timeout our while tuning pid and while tuning timeout, Tune wit 
 
     double voltage;
     double encoderAvg;
@@ -433,7 +434,7 @@ double x = 0;
 x = double(abs(turnv));
 variKP = (0 * pow(x,5)) + (0 * pow(x, 4)) + (0* pow(x,3)) + (0* pow(x,2)) + (0 * x) + 0; 
 variKD = (0 * pow(x,5)) + (0 * pow(x, 4)) + (0* pow(x,3)) + (0* pow(x,2)) + (0 * x) + 0; 
-timeout = (30000 * pow(x,5)) + (0 * pow(x, 4)) + (0* pow(x,3)) + (0* pow(x,2)) + (0 * x) + 0; //Comment timeout our while tuning pid and while tuning timeout, Tune wit 
+//timeout = (30000 * pow(x,5)) + (0 * pow(x, 4)) + (0* pow(x,3)) + (0* pow(x,2)) + (0 * x) + 0; //Comment timeout our while tuning pid and while tuning timeout, Tune wit 
 
 
 while(true){
@@ -498,7 +499,7 @@ void driveClamp (int target, int clampDistance){
 
 double x = 0;
 x = double(abs(target));
-timeout = (0 * pow(x,5)) + (0 * pow(x, 4)) + (0* pow(x,3)) + (0* pow(x,2)) + (0 * x) + 0; //Comment timeout our while tuning pid and while tuning timeout, Tune wit 
+//timeout = (0 * pow(x,5)) + (0 * pow(x, 4)) + (0* pow(x,3)) + (0* pow(x,2)) + (0 * x) + 0; //Comment timeout our while tuning pid and while tuning timeout, Tune wit 
 
     double voltage;
     double encoderAvg;
@@ -516,7 +517,6 @@ while(true){
 encoderAvg = (LB.get_position() + RB. get_position()) / 2;
 voltage = calPID(target, encoderAvg, STRAIT_INTEGRAL_KI, STRAIT_MAX_INTEGRAL);
 
-
 if(imu.get_heading() < 180) {
     heading_error = init_heading - imu.get_heading();
 }
@@ -530,8 +530,8 @@ if (voltage > 127){
 }else if (voltage <-127){
     voltage = -127;
 }
-
-if(abs(error) < clampDistance ){
+ 
+if(int clampDistance = encoderAvg){
     MogoMech.set_value(true);
 }
 chasMove( (voltage + heading_error), (voltage + heading_error), (voltage + heading_error),(voltage - heading_error), (voltage - heading_error), (voltage - heading_error));
@@ -561,12 +561,12 @@ RB.brake();
 
 //driveIntake function has 2 perametiers, 1 target, 2 where from the target to start intaking where from the target to stop intaking
 
-void driveIntake (int target, int start, int stop) {
+void driveOutake (int target, int start, int stop) {
     int timeout = 30000;
 
 double x = 0;
 x = double(abs(target));
-timeout = (0 * pow(x,5)) + (0 * pow(x, 4)) + (0* pow(x,3)) + (0* pow(x,2)) + (0 * x) + 0; //Comment timeout our while tuning pid and while tuning timeout, Tune wit 
+//timeout = (0 * pow(x,5)) + (0 * pow(x, 4)) + (0* pow(x,3)) + (0* pow(x,2)) + (0 * x) + 0; //Comment timeout our while tuning pid and while tuning timeout, Tune wit 
 
     double voltage;
     double encoderAvg;
@@ -631,6 +631,78 @@ RF.brake();
 RM.brake();
 RB.brake();
 }
+//drive intake
+void driveIntake (int target, int start, int stop) {
+    int timeout = 30000;
+
+double x = 0;
+x = double(abs(target));
+//timeout = (0 * pow(x,5)) + (0 * pow(x, 4)) + (0* pow(x,3)) + (0* pow(x,2)) + (0 * x) + 0; //Comment timeout our while tuning pid and while tuning timeout, Tune wit 
+
+    double voltage;
+    double encoderAvg;
+    int count = 0;
+    double init_heading = imu.get_heading();
+    double heading_error = 0;
+    int cycle = 0;
+    int time2 = 0;
+
+setConstants( STRAIT_KP, STRAIT_KI,STRAIT_KD);
+resetEncoders();
+
+while(true){
+
+encoderAvg = (LB.get_position() + RB. get_position()) / 2;
+voltage = calPID(target, encoderAvg, STRAIT_INTEGRAL_KI, STRAIT_MAX_INTEGRAL);
+
+
+if(imu.get_heading() < 180) {
+    heading_error = init_heading - imu.get_heading();
+}
+else {
+    heading_error =((360 - imu.get_heading())-init_heading);
+}
+heading_error = heading_error * 0;
+
+/*if (voltage > 127){
+    voltage = 127;
+}else if (voltage <-127){
+    voltage = -127;
+}*/
+
+if(abs(error) < start && abs(error) > stop){
+   Intake.move(127);
+    Intake_Layer1.move(127);
+}else{
+    Intake.move(0);
+    Intake_Layer1.move(0);
+}
+
+chasMove( (voltage + heading_error), (voltage + heading_error), (voltage + heading_error),(voltage + heading_error), (voltage + heading_error), (voltage + heading_error));
+if (abs(target- encoderAvg) <=4)-count++;
+if (count >= 20 || time2 > timeout){
+       tunetime2 = time2;
+    break;
+}
+if (time2 % 50 == 0 && time2 % 100 !=0 && time2 % 150 !=0){
+    con.print(0,0,"ERROR:%f    ", float(error));
+} else if (time2% 100 == 0 && time2 % 150 !=0){
+    con.print(1,0,"EncoderAvg!%f        ", float(encoderAvg));
+} else if (time2 % 150 ==0){
+    con.print(2,0,"Time:%f    ",float(time2));
+}
+
+    delay(10);
+    time2 += 10;
+}
+LF.brake();
+LM.brake();
+LB.brake();
+RF.brake();
+RM.brake();
+RB.brake();
+}
+
 //Drive Clamp Slow
 
 void driveClampSlow (int target, int clampDistance, int speed) {
@@ -638,7 +710,7 @@ void driveClampSlow (int target, int clampDistance, int speed) {
 
 double x = 0;
 x = double(abs(target));
-timeout = (0 * pow(x,5)) + (0 * pow(x, 4)) + (0* pow(x,3)) + (0* pow(x,2)) + (0 * x) + 0; //Comment timeout our while tuning pid and while tuning timeout, Tune wit 
+//timeout = (0 * pow(x,5)) + (0 * pow(x, 4)) + (0* pow(x,3)) + (0* pow(x,2)) + (0 * x) + 0; //Comment timeout our while tuning pid and while tuning timeout, Tune wit 
 
     double voltage;
     double encoderAvg;
@@ -706,7 +778,7 @@ void driveIntakeSlow (int target, int start, int stop, int speed) {
 
 double x = 0;
 x = double(abs(target));
-timeout = (0 * pow(x,5)) + (0 * pow(x, 4)) + (0* pow(x,3)) + (0* pow(x,2)) + (0 * x) + 0; //Comment timeout our while tuning pid and while tuning timeout, Tune wit 
+//timeout = (0 * pow(x,5)) + (0 * pow(x, 4)) + (0* pow(x,3)) + (0* pow(x,2)) + (0 * x) + 0; //Comment timeout our while tuning pid and while tuning timeout, Tune wit 
 
     double voltage;
     double encoderAvg;
@@ -770,4 +842,15 @@ LB.brake();
 RF.brake();
 RM.brake();
 RB.brake();
+}
+
+//Intake
+void justIntake (int time){
+if(abs(error) < time){
+    Intake.move(-127);
+    Intake_Layer1.move(-100);
+}else{
+    Intake.move(0);
+    Intake_Layer1.move(0);
+}
 }
