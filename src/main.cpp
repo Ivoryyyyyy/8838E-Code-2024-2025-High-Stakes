@@ -46,21 +46,21 @@ int time=0;
 while (true) {
 
 //Mogo Mech
-if(con.get_digital_new_press(E_CONTROLLER_DIGITAL_Y)){
+if(con.get_digital_new_press(E_CONTROLLER_DIGITAL_X)){
 	MogoMechToggle = !MogoMechToggle;
 }
 MogoMech.set_value(MogoMechToggle);
 
 //Stakewing toggle
-if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_X)) {
+if (con.get_digital_new_press(E_CONTROLLER_DIGITAL_Y)) {
             StakeWingToggle = !StakeWingToggle;
  }
  StakeWing.set_value(StakeWingToggle);
 
  //Redirect
 if (con.get_digital(E_CONTROLLER_DIGITAL_L1)){
-	Redirect.move(127);
-	liftAngle = Redirect.get_position();
+	Redirect.move(90);
+	liftAngle = Redirect.get_position();	
 }
 else if (con.get_digital(E_CONTROLLER_DIGITAL_L2)){
 	Redirect.move(-30);

@@ -5,7 +5,7 @@
 
 void autons1 () {
 //Red Side Left
-driveSlow(-700,80);
+/*driveSlow(-700,80);
 driveTurn(-32);
 driveClampSlow(-450,20,20);
 MogoMech.set_value(true);
@@ -16,54 +16,61 @@ justIntake(100);
 driveTurn(70);
 driveStraight2(500);
 driveTurn(-20);
-driveStraight2(150);
-driveTurn(-s30);
 driveStraight2(100);
+driveTurn(-30);
+driveStraight2(70);
+driveStraight2(-700);
+driveTurn(90);
+driveStraight2(450);*/
 
-
-
-
-//MogoMech.set_value(true);
-//driveTurn(45);
-//driveIntake(500)
-/*driveTurn2(110); 
-driveIntakeSlow(800,600,800,80);
-driveStraight2(-200);
-driveTurn2(20);
-driveIntakeSlow(200,200,200,80);
-driveStraight2(-600);
-driveTurn2(-90);
-driveTurn2(110);
-driveStraight2(600);
-driveTurn2(90);
-driveStraight2(200);*/
-
-// Red Side Left
-
-
-// Blue Side Right
-//Driveclamp(800,1000)
-/*driveStraight2(-1000);
-driveTurn2(-110);
-driveStraight2(600);
-Intake.move(90);
-Intake2.move(90);
-Intake_Layer1.move(120);
-driveTurn2(-90);
-driveStraight2(600);
-Intake.move(127);
-Intake2.move(127);
-Intake_Layer1.move(127);
-driveTurn2(-30);
+//Blue Right Side
+/*StakeWing.set_value(false);
+driveSlow(-750,80);
+driveTurn(30);
+driveClampSlow(-500,20,25);
+MogoMech.set_value(true);
+StakeWing.set_value(false);
+driveTurn(-125); 
+driveStraight2(800);
+driveTurn(-15);
+justIntake(100);
+driveTurn(-70);
+driveStraight2(500);
+driveTurn(20);
 driveStraight2(100);
-Intake.move(127);
-Intake2.move(127);
-Intake_Layer1.move(127);
-driveTurn2(-110);
-driveStraight2(600);
-driveTurn2(-90);
-driveStraight2(200);*/
+driveTurn(30);
+driveStraight2(70);
+driveStraight2(50);
+driveStraight2(-700);
+driveTurn(-90);
+driveStraight2(400);
+driveStraight2(400);*/
 
-//Blue Side Left 
+// Red Side Right safe
+/*driveSlow(-700,80);
+driveTurn(-32);
+driveClampSlow(-450,20,20);
+MogoMech.set_value(true);
+driveTurn(120); 
+driveStraight2(800);
+driveTurn(15);
+justIntake(100);*/
+
+// Blue Side Left safe
+/*driveSlow(-700,80);
+driveTurn(32);
+driveClampSlow(-450,20,20);
+MogoMech.set_value(true);
+driveTurn(-120); 
+driveStraight2(800);
+driveTurn(-15);
+justIntake(100);
+driveStraight2(100);*/
+
+//Blue Side Left elims
+driveStraight2(-1000);
+driveTurn(115);
+//driveStraight2(2000);
+
 
 }
