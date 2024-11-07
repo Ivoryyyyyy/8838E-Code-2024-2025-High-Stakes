@@ -5,7 +5,8 @@
 
 void autons1 () {
 //Red Side Left
-/*driveSlow(-700,80);
+StakeWing.set_value(false);
+driveSlow(-700,80);
 driveTurn(-32);
 driveClampSlow(-450,20,20);
 MogoMech.set_value(true);
@@ -21,7 +22,7 @@ driveTurn(-30);
 driveStraight2(70);
 driveStraight2(-700);
 driveTurn(90);
-driveStraight2(450);*/
+driveStraight2(450);
 
 //Blue Right Side
 /*StakeWing.set_value(false);
@@ -47,17 +48,22 @@ driveStraight2(400);
 driveStraight2(400);*/
 
 // Red Side Right safe
-/*driveSlow(-700,80);
+/*StakeWing.set_value(false);
+driveSlow(-750,80);
 driveTurn(-32);
-driveClampSlow(-450,20,20);
+driveClampSlow(-500,20,20);
 MogoMech.set_value(true);
 driveTurn(120); 
 driveStraight2(800);
 driveTurn(15);
-justIntake(100);*/
+justIntake(100);
+driveStraight2(-400);
+driveTurn(90);
+driveStraight2(400);*/
 
 // Blue Side Left safe
-/*driveSlow(-700,80);
+/*StakeWing.set_value(false);
+driveSlow(-700,80);
 driveTurn(32);
 driveClampSlow(-450,20,20);
 MogoMech.set_value(true);
@@ -68,9 +74,13 @@ justIntake(100);
 driveStraight2(100);*/
 
 //Blue Side Left elims
-driveStraight2(-1000);
-driveTurn(115);
+/*driveStraight2(-1000);
+driveTurn(115);*/
 //driveStraight2(2000);
+
+//Auton Skills
+/*StakeWing.set_value(false);
+justIntake(100); */
 
 
 }

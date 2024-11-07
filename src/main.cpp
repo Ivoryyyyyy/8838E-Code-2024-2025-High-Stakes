@@ -92,8 +92,7 @@ else {
 	Intake.move(0);
 	Intake_Layer1.move(0);
 }
-//chassis arcade drive 
-;
+//chassis drive 
 int power = con.get_analog(ANALOG_LEFT_Y);
 int RX = con.get_analog(ANALOG_RIGHT_X);
 int turn = int(pow(RX, 3)/ 16129);
