@@ -34,4 +34,4 @@ pros::Controller con (pros::E_CONTROLLER_MASTER);
 
 pros::ADIDigitalOut MogoMech ('A',false);
 pros::ADIDigitalOut StakeWing('B',false);
-
+pros::ADIDigitalIn selec ('C');

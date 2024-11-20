@@ -63,7 +63,7 @@ if (con.get_digital(E_CONTROLLER_DIGITAL_L1)){
 	liftAngle = Redirect.get_position();	
 }
 else if (con.get_digital(E_CONTROLLER_DIGITAL_L2)){
-	Redirect.move(-30);
+	Redirect.move(-90);
 	liftAngle = Redirect.get_position();
 }
 else {
@@ -73,7 +73,7 @@ else {
  
 //pid tester
 if(con.get_digital_new_press(E_CONTROLLER_DIGITAL_A)){
-	justIntake(100);
+	driveArcL(90, 800, 1000);
 	//autonomous(); 
 	//driveSlow(1000,80);
 	//make sure that this works for small and big numbers 
@@ -123,17 +123,18 @@ RB.move(right);
 }
 
 if (time % 50 == 0 && time % 100 !=0 && time % 150 !=0){
-    con.print(0,0,"ERROR:%f       ", float(error));
+    con.print(0,0,"Time:%f       ", float(viewTime));
 } else if (time% 100 == 0 && time % 150 !=0){
     con.print(1,0,"HeadingError!%f          ", float(imu.get_heading()));
-} else if (time % 150 ==0){
-    con.print(2,0,"Time:%f      ",float(tunetime2));
+} else if (time % 150 == 0){
+    con.print(2,0,"Error:%f      ",float(error));
 }
 
 
 
 
-
+delay(10);
+time += 10;
 
 }
 

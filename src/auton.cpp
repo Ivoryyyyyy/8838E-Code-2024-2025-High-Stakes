@@ -4,6 +4,9 @@
 #include "robot.h"
 using namespace pros;
 void autons1 () {
+//Red sidre right
+driveStraight(-1600);
+driveArcL(-50, -400, 1000);
 //Red Side Left
 /*StakeWing.set_value(false);
 driveSlow(-700,80);
@@ -13,8 +16,8 @@ MogoMech.set_value(true);
 delay(100);
 //preload ring
 driveTurn(120); 
-driveStraight2(800);//second ring
 justIntake(100);
+driveStraight2(800);//second ring
 driveTurn(15);
 driveTurn(70);
 driveStraight2(500);
@@ -42,8 +45,8 @@ Redirect.move(-127);
 delay(400);
 Redirect.move(0);
 driveTurn(-75); 
-driveStraight2(800);//second ring
 justIntake(100);
+driveStraight2(800);//second ring
 driveTurn(-85);
 driveStraight2(500);
 driveTurn(20);
@@ -52,16 +55,17 @@ driveTurn(25);
 driveStraight2(-700);
 driveTurn(- 90);
 Redirect.move(-127);
-delay(400);
+delay(1400);
+driveStraight2(500);
 Redirect.move(0);
-driveStraight2(465);*/
+driveTurn(-5);*/
 
 // Red Side Right safe
-StakeWing.set_value(false);
+/*StakeWing.set_value(false);
 driveSlow(1900,80);
 driveTurn(-20);
 StakeWing.set_value(false);
-driveSlow(-1000,20);
+driveSlow(-1000,20);*/
 /*riveTurn(45);
 Redirect.move(-127);
 delay(400);
