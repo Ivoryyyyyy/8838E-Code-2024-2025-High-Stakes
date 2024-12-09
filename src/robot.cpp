@@ -4,16 +4,16 @@
 
 //header Guards, safety
 
-#define LF_PORT 13
+#define LF_PORT 4//13
 #define LM_PORT 11
-#define LB_PORT 9
-#define RF_PORT 5
+#define LB_PORT 6//9
+#define RF_PORT 3//5
 #define RM_PORT 7
-#define RB_PORT 1
+#define RB_PORT 5//1
 #define IMU_PORT 15
-#define Intake_PORT 4
+#define Intake_PORT 1 //4
 #define Intake_Layer1_PORT 12
-#define Redirect_PORT 3
+#define Redirect_PORT 13//3
 
 //hello
 

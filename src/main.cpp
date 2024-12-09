@@ -74,6 +74,7 @@ else {
 //pid tester
 if(con.get_digital_new_press(E_CONTROLLER_DIGITAL_A)){
 	driveArcL(90, 800, 1000);
+
 	//autonomous(); 
 	//driveSlow(1000,80);
 	//make sure that this works for small and big numbers 
@@ -81,12 +82,12 @@ if(con.get_digital_new_press(E_CONTROLLER_DIGITAL_A)){
 }
 //Intake
 if (con.get_digital(E_CONTROLLER_DIGITAL_R1)){
-	Intake.move(90);
-	Intake_Layer1.move(90);
+	Intake.move(75);
+	Intake_Layer1.move(75);
 }
 else if (con.get_digital(E_CONTROLLER_DIGITAL_R2)){
-	Intake.move (-90);
-	Intake_Layer1.move(-90);
+	Intake.move (-75);
+	Intake_Layer1.move(-75);
 }
 else {
 	Intake.move(0);

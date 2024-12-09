@@ -4,9 +4,13 @@
 #include "robot.h"
 using namespace pros;
 void autons1 () {
-//Red sidre right
-driveStraight(-1600);
-driveArcL(-50, -400, 1000);
+//Red side right 4 ring
+//hi
+/*driveStraight(1600);
+driveTurn(15);
+driveStraight2(250);
+StakeWing.set_value(true);
+driveSlow(-1000,20);*/
 //Red Side Left
 /*StakeWing.set_value(false);
 driveSlow(-700,80);
@@ -32,8 +36,48 @@ delay(300);
 Redirect.move(0);
 driveStraight2(465);*/
 
+//Blue Side goal side, left rush (elims, nor priority win point, 2 stakes)
+/*driveStraight(-1550);
+driveTurn(-35);
+driveClampSlow(-450,-40,20);
+bool MogoMechToggle = true; //mogo rush
+justIntake(100);//preload
+driveStraight(200);
+driveTurn(-115);
+driveTurn(-15);
+driveStraight2(-700);
+MogoMechToggle = false; //drop 1st moible goal
+delay(100);
+driveTurn(-100);
+driveStraight2(-700);
+driveTurn(-45);
+driveClampSlow(-300,280,30);
+MogoMechToggle = true; // secomd moible goal
+driveTurn(24);
+driveStraight2(300);*/
 
-//Blue Right Side
+//Red Side goal side, right rush
+driveStraight(-1550);
+driveTurn(35);
+driveClampSlow(-450,-40,20);
+bool MogoMechToggle = true; //mogo rush
+justIntake(100);//preload
+driveStraight(200);
+driveTurn(115);
+driveTurn(15);
+driveStraight2(-700);
+MogoMechToggle = false; //drop 1st moible goal
+delay(100);
+driveTurn(100);
+driveStraight2(-700);
+driveTurn(45);
+driveClampSlow(-300,280,30);
+MogoMechToggle = true; // secomd moible goal
+driveTurn(-24);
+driveStraight2(300);
+
+
+//Blue Right Side 4 ring
 /*StakeWing.set_value(false);
 driveSlow(-700,80);
 driveTurn(-32);
